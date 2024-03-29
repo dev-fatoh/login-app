@@ -1,6 +1,10 @@
 const db = require("../models");
 const bcrypt = require("bcryptjs");
-
+exports.signupPage = async (req, res) => {
+  await res.render("index", {
+    title: "Sign Up",
+  });
+};
 exports.getUsers = async (req, res) => {
   try {
     const users = await db.User.findAll();
@@ -14,18 +18,23 @@ exports.createUser = async (req, res) => {
   const { username, email, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
-    const user = await db.User.create({
+    await db.User.create({
       username,
       email,
       password: hashedPassword,
     });
-    res.status(201).json(user);
+    res.redirect("/login");
   } catch (error) {
     res.status(400).json(error);
   }
 };
+exports.loginPage = async (req, res) => {
+  await res.render("login", {
+    title: "Login",
+  });
+};
 
-exports.login = async (req, res) => {
+exports.validateUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await db.User.findOne({
