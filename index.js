@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const session = require("express-session");
+const flash = require("connect-flash");
 const app = express();
 
 const db = require("./models");
@@ -13,7 +15,15 @@ app.use(
 );
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 },
+  }),
+);
+app.use(flash());
 app.use("/", require("./routes/route"));
 
 app.use(express.static(path.join(__dirname, "public")));

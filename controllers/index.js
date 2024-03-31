@@ -1,8 +1,11 @@
 const db = require("../models");
 const bcrypt = require("bcryptjs");
+
 exports.signupPage = async (req, res) => {
   await res.render("index", {
     title: "Sign Up",
+    message: req.flash("message"),
+    path: req.flash("path"),
   });
 };
 exports.getUsers = async (req, res) => {
@@ -23,9 +26,14 @@ exports.createUser = async (req, res) => {
       email,
       password: hashedPassword,
     });
+
     res.redirect("/login");
   } catch (error) {
-    res.status(400).json(error);
+    req.flash("message", error.errors[0].message);
+    req.flash("path", error.errors[0].path);
+    console.log(error.errors);
+
+    res.redirect("/");
   }
 };
 exports.loginPage = async (req, res) => {
