@@ -31,8 +31,6 @@ exports.createUser = async (req, res) => {
   } catch (error) {
     req.flash("message", error.errors[0].message);
     req.flash("path", error.errors[0].path);
-    console.log(error.errors);
-
     res.redirect("/");
   }
 };
