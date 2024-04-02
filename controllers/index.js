@@ -1,6 +1,5 @@
 const db = require("../models");
 const bcrypt = require("bcryptjs");
-
 exports.signupPage = async (req, res) => {
   await res.render("index", {
     title: "Sign Up",

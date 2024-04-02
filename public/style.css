@@ -1,25 +1,39 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
 body {
-  height: 100vh;
   background-image: url("./imeges/clay-banks-u27Rrbs9Dwc-unsplash.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
 }
 
 .main {
   padding: 0;
+  margin-top: 2rem;
   display: flex;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
 }
 
 .left-side {
+  position: relative;
   color: #fff;
   font-size: 1.6rem;
   padding: 2rem;
+}
+
+.left-side::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  z-index: -1;
+
+  mix-blend-mode: lighten;
 }
 
 .left-side h1 {
@@ -61,4 +75,28 @@ button {
   padding: 0.7rem 1.2rem;
   border-radius: 2px;
   border: 0;
+}
+
+input:focus {
+  border: 0;
+  outline: 0;
+}
+
+/*NOTE:media query*/
+
+@media screen and (max-width: 900px) {
+  .main {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .left-side {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .user-profile {
+    width: 100px;
+    height: 100px;
+  }
 }
