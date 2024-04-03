@@ -28,10 +28,6 @@ app.use("/", require("./routes/route"));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "node_modules")));
-app.use((err, req, res, next) => {
-  const { message = "Something went wrong", status = 500 } = err;
-  res.status(status).send(message);
-});
 db.sequelize
   .sync()
   .then(() => {

@@ -8,8 +8,6 @@ const {
   validateUser,
   loginPage,
 } = require("../controllers/index.js");
-const schema = require("../validateSchema/schema.js");
-const { validate } = require("../utiles/validation.js");
 
 router.get("/", signupPage);
 router.get("/login", loginPage);

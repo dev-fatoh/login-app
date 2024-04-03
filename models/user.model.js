@@ -7,11 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
         validate: {
-          notNull: {
-            msg: "please enter your name...",
-          },
           notEmpty: {
-            msg: "",
+            msg: "username is a required feild",
           },
         },
       },
@@ -20,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
         validate: {
-          isEmail: true,
+          isEmail: {
+            msg: "not valid email address",
+          },
         },
       },
       password: {

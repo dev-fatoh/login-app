@@ -12,14 +12,13 @@ block content
         img(src="/imeges/ben-den-engelsen-YUu9UAcOKZ4-unsplash.jpg", alt="user-profile")
       p don't have account?
         a(href="/") signup 
-      .email.border.border-primary.p-1
-        i(class="fa-solid fa-envelope mx-2")
+      .email.border.border-primary
+        i(class="fa-solid fa-envelope")
         input(class="p-2 border-0" type="email", name="email" placeholder='email')
-      if path == 'email'
-        p.text-danger #{message}
-      .password.border.border-primary.p-1
-        i(class="fa-solid fa-lock mx-2")
+      .password.border.border-primary
+        i(class="fa-solid fa-lock")
         input(class="p-2 border-0" type="password", name="password" placeholder="password")
- 
       button(type="submit") Login
+      if loggedin 
+        p.alert.alert-success #{loggedin}
         

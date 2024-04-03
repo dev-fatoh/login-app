@@ -77,6 +77,16 @@ button {
   border: 0;
 }
 
+.user,
+.email,
+.password {
+  padding: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 input:focus {
   border: 0;
   outline: 0;

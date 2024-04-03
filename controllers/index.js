@@ -3,8 +3,7 @@ const bcrypt = require("bcryptjs");
 exports.signupPage = async (req, res) => {
   await res.render("index", {
     title: "Sign Up",
-    message: req.flash("message"),
-    path: req.flash("path"),
+    message: req.flash(),
   });
 };
 exports.getUsers = async (req, res) => {
@@ -28,7 +27,7 @@ exports.createUser = async (req, res) => {
 
     res.redirect("/login");
   } catch (error) {
-    req.flash("message", error.errors[0].message);
+    req.flash("error", error.errors[0].message);
     req.flash("path", error.errors[0].path);
     res.redirect("/");
   }
@@ -36,6 +35,7 @@ exports.createUser = async (req, res) => {
 exports.loginPage = async (req, res) => {
   await res.render("login", {
     title: "Login",
+    success: req.flash(),
   });
 };
 
@@ -60,9 +60,11 @@ exports.validateUser = async (req, res) => {
       });
       return;
     }
-    res.status(200).json({
-      msg: "welcome you logged in",
-    });
+    // res.status(200).json({
+    //   msg: "welcome you logged in",
+    // });
+    req.flash("success", "welcome you logged in");
+    res.redirect("/login");
   } catch (err) {
     res.status(400).json(err);
   }

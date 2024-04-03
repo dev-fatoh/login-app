@@ -11,18 +11,20 @@ block content
         img(src="/imeges/ben-den-engelsen-YUu9UAcOKZ4-unsplash.jpg", alt="user-profile")
       p do you have account?
         a(href="/login") signin
-      .user.border.border-primary.p-1
-        i(class="fa-solid fa-user mx-2")
+      .user.border.border-primary
+        i(class="fa-solid fa-user")
         input(class="p-2 border-0" type="text", name="username" placeholder="username")
-      if path == 'username'
-        p.text-danger #{message}
-      .email.border.border-primary.p-1
-        i(class="fa-solid fa-envelope mx-2")
+      if message.path == 'username'
+        p.alert.alert-danger #{message.error}
+          i(class="fa-solid fa-circle-exclamation")
+      .email.border.border-primary
+        i(class="fa-solid fa-envelope")
         input(class="p-2 border-0" type="email", name="email" placeholder='email')
-      if path == 'email'
-        p.text-danger #{message}
-      .password.border.border-primary.p-1
-        i(class="fa-solid fa-lock mx-2")
+      if message.path == 'email'
+        p.alert.alert-danger #{message.error}
+          i(class="fa-solid fa-circle-exclamation")
+      .password.border.border-primary
+        i(class="fa-solid fa-lock")
         input(class="p-2 border-0" type="password", name="password" placeholder="password")
       button(type="submit") Submit
         
